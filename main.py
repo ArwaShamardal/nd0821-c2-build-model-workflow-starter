@@ -118,12 +118,12 @@ def go(config: DictConfig):
 
             pass
 
-        if "test_model" in active_steps:
+        if "test_regression_model" in active_steps:
             _ = mlflow.run(
-                    os.path.join(root_path, "components", "test_model"),
+                    os.path.join(root_path, "components", "test_regression_model"),
                     "main",
                     parameters={
-                        "mlflow_model": "nyc_airbnb/" + config['pipeline']['export_artifact'] + ":prod",
+                        "mlflow_model": "nyc_airbnb/random_forest_export:prod",
                         "test_dataset": "nyc_airbnb/test_data.csv:latest"
                     },
             )   
