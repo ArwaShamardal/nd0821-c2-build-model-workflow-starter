@@ -2,7 +2,6 @@ import pytest
 import pandas as pd
 import wandb
 
-
 def pytest_addoption(parser):
     parser.addoption("--csv", action="store")
     parser.addoption("--ref", action="store")
