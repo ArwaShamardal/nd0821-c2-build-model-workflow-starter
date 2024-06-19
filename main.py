@@ -99,20 +99,34 @@ def go(config: DictConfig):
 
             # NOTE: use the rf_config we just created as the rf_config parameter for the train_random_forest
             # step
-
+            _ = mlflow.run(
+                    os.path.join(root_path, "src", "train_random_forest"),
+                    "main",
+                    parameters={
+                        "trainval_artifact": "nyc_airbnb/trainval_data.csv:latest",
+                        "val_size": config['modeling']['val_size'],
+                        "random_seed": config['modeling']['random_seed'],
+                        "stratify_by": config['modeling']['stratify_by'],
+                        "rf_config": rf_config,
+                        "max_tfidf_features": config['modeling']['max_tfidf_features'],
+                        "output_artifact": "random_forest_export"
+                    },
+            )   
             ##################
             # Implement here #
             ##################
 
             pass
 
-        if "test_regression_model" in active_steps:
-
-            ##################
-            # Implement here #
-            ##################
-
-            pass
+        if "test_model" in active_steps:
+            _ = mlflow.run(
+                    os.path.join(root_path, "components", "test_model"),
+                    "main",
+                    parameters={
+                        "mlflow_model": "nyc_airbnb/" + config['pipeline']['export_artifact'] + ":prod",
+                        "test_dataset": "nyc_airbnb/test_data.csv:latest"
+                    },
+            )   
 
 
 if __name__ == "__main__":
