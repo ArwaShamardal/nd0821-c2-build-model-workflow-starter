@@ -1,0 +1,87 @@
+#!/usr/bin/env python
+"""
+cleaning the dathe min and max range provided
+"""
+import argparse
+import logging
+import wandb
+import pandas as pd
+
+
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
+logger = logging.getLogger()
+
+
+def go(args):
+
+    run = wandb.init(job_type="basic_cleaning")
+    run.config.update(args)
+
+    # Download input artifact. This will also log that this script is using this
+    # particular version of the artifact
+    # artifact_local_path = run.use_artifact(args.input_artifact).file()
+
+    ######################
+    # YOUR CODE HERE     #
+    ######################
+
+
+if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser(description="cleaning data")
+
+
+    parser.add_argument(
+        "--min_price", 
+        type=## INSERT TYPE HERE: str, float or int,
+        help=## INSERT DESCRIPTION HERE,
+        required=True
+    )
+
+    parser.add_argument(
+        "-- max_price", 
+        type=## INSERT TYPE HERE: str, float or int,
+        help=## INSERT DESCRIPTION HERE,
+        required=True
+    )
+
+    parser.add_argument(
+        "-- in_artifact_name", 
+        type=## INSERT TYPE HERE: str, float or int,
+        help=## INSERT DESCRIPTION HERE,
+        required=True
+    )
+
+    parser.add_argument(
+        "-- out_artifact_name", 
+        type=## INSERT TYPE HERE: str, float or int,
+        help=## INSERT DESCRIPTION HERE,
+        required=True
+    )
+
+    parser.add_argument(
+        "-- ome", 
+        type=## INSERT TYPE HERE: str, float or int,
+        help=## INSERT DESCRIPTION HERE,
+        required=True
+    )
+
+    parser.add_argument(
+        "-- out_artifact_type", 
+        type=## INSERT TYPE HERE: str, float or int,
+        help=## INSERT DESCRIPTION HERE,
+        required=True
+    )
+
+    parser.add_argument(
+        "-- out_artifact_desc", 
+        type=## INSERT TYPE HERE: str, float or int,
+        help=## INSERT DESCRIPTION HERE,
+        required=True
+    )
+
+
+    args = parser.parse_args()
+
+    go(args)

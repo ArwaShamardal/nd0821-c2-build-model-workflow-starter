@@ -1,0 +1,38 @@
+name: clean_data
+conda_env: conda.yml
+
+entry_points:
+  main:
+    parameters:
+
+      min_price:
+        description: ## ADD DESCRIPTION
+        type: string
+
+       max_price:
+        description: ## ADD DESCRIPTION
+        type: string
+
+       in_artifact_name:
+        description: ## ADD DESCRIPTION
+        type: string
+
+       out_artifact_name:
+        description: ## ADD DESCRIPTION
+        type: string
+
+       ome:
+        description: ## ADD DESCRIPTION
+        type: string
+
+       out_artifact_type:
+        description: ## ADD DESCRIPTION
+        type: string
+
+       out_artifact_desc:
+        description: ## ADD DESCRIPTION
+        type: string
+
+
+    command: >-
+        python run.py  --min_price {min_price}  -- max_price { max_price}  -- in_artifact_name { in_artifact_name}  -- out_artifact_name { out_artifact_name}  -- ome { ome}  -- out_artifact_type { out_artifact_type}  -- out_artifact_desc { out_artifact_desc} 
